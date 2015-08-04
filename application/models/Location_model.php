@@ -51,5 +51,18 @@ class Location_model extends CI_Model {
 		$query = $this->db->query($sql);
         return $query->result_array();
 	}
+
+	public function get_municipios_by_ciudad($estado,$ciudad){
+		$sql = "SELECT 
+					M.CODMUNICIPIO AS CODMUNICIPIO,INITCAP(M.DESCMUNICIPIO) AS DESCMUNICIPIO 
+				FROM 
+					MUNICIPIO M
+				WHERE
+					M.CODPAIS = '001'
+					AND M.CODESTADO = '$estado'
+					AND M.CODCIUDAD = '$ciudad'";
+		$query = $this->db->query($sql);
+        return $query->result_array();
+	}
 }
 ?>

@@ -15,7 +15,7 @@ class Talleres extends CI_Controller {
     	$this->load->model('talleres_model');
     	$this->load->model('location_model');
     	$data['estados'] = $this->location_model->get_all_estados();
-        //$data['estados'] = $this->location_model->get_ciudades();
+        $data['talleres'] = $this->talleres_model->get_all_talleres();
     	$this->load->view('talleres_view',$data);
     }
 
@@ -23,24 +23,34 @@ class Talleres extends CI_Controller {
         $this->load->model('location_model');
         $estado = $this->input->post('estado');
         //$data['ciudades'] = $this->location_model->get_ciudades_by_estado($estado);
-        //$ciudades = $this->location_model->get_ciudades_by_estado($estado);
-        $result = '<option>-adsadass</option>';
-        /*foreach ($ciudades as $ciudad){
+        $ciudades = $this->location_model->get_ciudades_by_estado($estado);
+        $result = "<option>--Seleccione--</option>";
+        foreach ($ciudades as $ciudad){
             $result .= '<option value="' . $ciudad['CODCIUDAD'] . '" >' . $ciudad['DESCCIUDAD'] . '</option>';
-        }*/
+        }
         //echo json_encode("asdas");
         echo $result;
     }
-    public function get_ciudades_json(){
+
+    public function get_municipios(){
+        $this->load->model('location_model');
+        $estado = $this->input->post('estado');
+        $ciudad = $this->input->post('ciudad');
+        //$data['ciudades'] = $this->location_model->get_municipios_by_ciudad($estado);
+        $municipios = $this->location_model->get_municipios_by_ciudad($estado,$ciudad);
+        $result = "<option>--Seleccione--</option>";
+        foreach ($municipios as $municipio){
+            $result .= '<option value="' . $municipio['CODMUNICIPIO'] . '" >' . $municipio['DESCMUNICIPIO'] . '</option>';
+        }
+        //echo json_encode("asdas");
+        echo $result;
+    }
+
+    /*public function get_ciudades_json(){
         $this->load->model('location_model');
         $estado = $this->input->post('estado');
         //$data['ciudades'] = $this->location_model->get_ciudades_by_estado($estado);
         $data['ciudades'] = $this->location_model->get_ciudades_by_estado($estado);
         echo json_encode($data['ciudades']);
-        /*$result = '<option>-selectxxxx-</option>';
-        foreach ($ciudades as $ciudad){
-            $result .= '<option value="' . $ciudad['CODCIUDAD'] . '" >' . $ciudad['DESCCIUDAD'] . '</option>';
-        }
-        echo $result;*/
-    }
+    }*/
 }

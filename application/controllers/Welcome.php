@@ -22,6 +22,8 @@ class Welcome extends CI_Controller {
 	{
 		//$this->load->model('talleres/talleres_model');
 		//redirect('talleres', 'refresh');
-		$this->load->view('talleres_view');
+		//$this->load->view('talleres_view');
+		//$this->load->view('talleres_view');
+		$this->load->view('welcome_message');
 	}
 }

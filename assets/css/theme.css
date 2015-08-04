@@ -16,3 +16,6 @@ body {
 .theme-showcase .navbar .container {
   width: auto;
 }
+#listado {
+  padding: 20px 30px 20px 30px;
+}
